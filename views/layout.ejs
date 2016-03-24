@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html ng-app="weldingApp">
+  <head>
+    <title>New Sails App</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="/bower_components/mdDataTable/dist/md-data-table-style.css">
+    <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/accordion.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/accordion.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/ad.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/ad.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/breadcrumb.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/breadcrumb.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/button.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/button.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/card.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/card.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/checkbox.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/checkbox.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/comment.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/comment.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/container.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/container.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/dimmer.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/dimmer.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/divider.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/divider.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/dropdown.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/dropdown.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/embed.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/embed.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/feed.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/feed.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/flag.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/flag.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/form.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/form.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/grid.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/grid.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/header.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/header.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/icon.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/icon.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/image.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/image.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/input.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/input.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/item.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/item.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/label.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/label.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/list.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/list.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/loader.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/loader.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/menu.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/menu.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/message.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/message.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/modal.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/modal.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/nag.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/nag.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/popup.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/popup.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/progress.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/progress.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/rail.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/rail.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/rating.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/rating.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/reset.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/reset.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/reveal.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/reveal.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/search.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/search.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/segment.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/segment.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/shape.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/shape.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/sidebar.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/sidebar.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/site.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/site.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/statistic.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/statistic.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/step.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/step.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/sticky.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/sticky.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/tab.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/tab.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/table.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/table.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/transition.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/transition.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/video.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/components/video.min.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.css">
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+  </head>
+
+  <body layout="row" ng-controller="MainCtrl">
+    <%- body %>
+
+
+
+    <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different template engine (handlebars, jade, dust, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
+    <script src="/bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="/bower_components/underscore/underscore.js"></script>
+    <script src="/bower_components/semantic/dist/components/accordion.js"></script>
+    <script src="/bower_components/semantic/dist/components/accordion.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/api.js"></script>
+    <script src="/bower_components/semantic/dist/components/api.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/checkbox.js"></script>
+    <script src="/bower_components/semantic/dist/components/checkbox.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/colorize.js"></script>
+    <script src="/bower_components/semantic/dist/components/colorize.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/dimmer.js"></script>
+    <script src="/bower_components/semantic/dist/components/dimmer.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/dropdown.js"></script>
+    <script src="/bower_components/semantic/dist/components/dropdown.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/embed.js"></script>
+    <script src="/bower_components/semantic/dist/components/embed.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/form.js"></script>
+    <script src="/bower_components/semantic/dist/components/form.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/modal.js"></script>
+    <script src="/bower_components/semantic/dist/components/modal.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/nag.js"></script>
+    <script src="/bower_components/semantic/dist/components/nag.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/popup.js"></script>
+    <script src="/bower_components/semantic/dist/components/popup.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/progress.js"></script>
+    <script src="/bower_components/semantic/dist/components/progress.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/rating.js"></script>
+    <script src="/bower_components/semantic/dist/components/rating.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/search.js"></script>
+    <script src="/bower_components/semantic/dist/components/search.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/shape.js"></script>
+    <script src="/bower_components/semantic/dist/components/shape.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/sidebar.js"></script>
+    <script src="/bower_components/semantic/dist/components/sidebar.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/site.js"></script>
+    <script src="/bower_components/semantic/dist/components/site.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/state.js"></script>
+    <script src="/bower_components/semantic/dist/components/state.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/sticky.js"></script>
+    <script src="/bower_components/semantic/dist/components/sticky.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/tab.js"></script>
+    <script src="/bower_components/semantic/dist/components/tab.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/transition.js"></script>
+    <script src="/bower_components/semantic/dist/components/transition.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/video.js"></script>
+    <script src="/bower_components/semantic/dist/components/video.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/visibility.js"></script>
+    <script src="/bower_components/semantic/dist/components/visibility.min.js"></script>
+    <script src="/bower_components/semantic/dist/components/visit.js"></script>
+    <script src="/bower_components/semantic/dist/components/visit.min.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/dashboard/dashboard.js"></script>
+    <script src="/js/orders/order.js"></script>
+    <script src="/js/orders/orders.js"></script>
+    <script src="/js/service/orderService.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

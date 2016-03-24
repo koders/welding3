@@ -1,0 +1,45 @@
+<h2 class="ui header">Orders</h2>
+
+<table class="ui sortable celled table">
+  <thead>
+  <tr>
+    <th>Status</th>
+    <th class="sorted descending">Confirmation Number</th>
+    <th>Company</th>
+    <th>Purchase Number</th>
+    <th>Order Date</th>
+    <th>Planned Delivery Date</th>
+    <th>Actual Delivery Date</th>
+    <th>Options</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="order in orders">
+    <td>
+      <div><i class="{{getStatus(order.t).icon}}" data-content="{{getStatus(order.t).title}}"></i></div>
+    </td>
+    <td>{{order.data.ocnr}}</td>
+    <td>{{order.data.company}}</td>
+    <td>{{order.data.ordernr}}</td>
+    <td>{{order.data.odate}}</td>
+    <td>{{order.data.ddate}}</td>
+    <td>{{order.data.addate}}</td>
+    <td>
+      <div class="ui icon top left pointing dropdown button">
+        <i class="configure icon"></i>
+        <div class="menu">
+          <div class="header">
+            <i class="tags icon"></i>
+            Options
+          </div>
+          <div class="divider"></div>
+          <div class="item" ng-repeat="item in orderOptions">
+            <i class="{{item.icon}} icon"></i>
+            {{item.title}}
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
