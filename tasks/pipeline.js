@@ -19,7 +19,6 @@ var cssFilesToInject = [
 
   // Bower
   'bower_components/angular-material/angular-material.css',
-  'bower_components/mdDataTable/dist/md-data-table-style.css',
   'bower_components/angular-loading-bar/build/loading-bar.min.css',
 
   // lumX

@@ -9,8 +9,8 @@ angular.module('weldingApp.orders', [])
     }
   ])
 
-  .controller('OrderCtrl', ['$scope', '$http',
-    function ($scope, $http) {
+  .controller('OrderCtrl', ['$scope', '$http', '$location',
+    function ($scope, $http, $location) {
       $http.get('api/orders?sort=id%20desc').success(function (data) {
         $scope.items = data;
         for (var i = 0; i < $scope.items.length; i++) {
@@ -56,5 +56,14 @@ angular.module('weldingApp.orders', [])
         }
       };
 
+      $scope.editOrder = function(order){
+        $location.url('/orders/' + order.ocnr);
+      };
+
+      // Load semantic UI
+      setTimeout(function() {
+        $('[data-content]').popup();
+        $('.ui.dropdown').dropdown();
+      });
     }
   ]);

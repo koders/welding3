@@ -96,14 +96,6 @@ weldingApp.controller('MainCtrl', ['$scope', 'OrderService', '$location', functi
 
   $scope.getOrders();
 
-  $(function () {
-    // doesnt work if timeout is not set...
-    setTimeout(function () {
-      $('[data-content]').popup();
-      $('.ui.dropdown').dropdown();
-    }, 1000);
-  });
-
 }]);
 
 weldingApp.config(['$routeProvider',
