@@ -2,16 +2,14 @@
 
 var weldingApp = angular.module('weldingApp', [
   'ngRoute',
-  //'ngMaterial',
-  //'mdDataTable',
-  //'lumx',
   'ngAnimate',
   //'angular-loading-bar',
   'weldingApp.dashboard',
   'weldingApp.orders',
+  'weldingApp.order',
 ]);
 
-weldingApp.controller('MainCtrl', ['$scope', 'OrderService', '$location', function ($scope, OrderService, $location) {
+weldingApp.controller('MainCtrl', ['$scope', 'OrderService', '$location', '$http', function ($scope, OrderService, $location, $http) {
 
   // Menu items
   $scope.menuItems = [
@@ -95,6 +93,45 @@ weldingApp.controller('MainCtrl', ['$scope', 'OrderService', '$location', functi
   };
 
   $scope.getOrders();
+
+  // set-up loginForm loading state
+  $scope.loginForm = {
+    loading: false
+  };
+
+  $scope.submitLoginForm = function (){
+
+    // Set the loading state (i.e. show loading spinner)
+    $scope.loginForm.loading = true;
+    $scope.loginForm.error = false;
+
+    // Submit request to Sails.
+    $http.post('/login', {
+        userName: $scope.loginForm.userName,
+        password: $scope.loginForm.password
+      })
+      .then(function onSuccess (){
+        // Refresh the page now that we've been logged in.
+        window.location = '/';
+      })
+      .catch(function onError(sailsResponse) {
+
+        // Handle known error type(s).
+        // Invalid username / password combination.
+        if (sailsResponse.status === 400 || 404) {
+          // $scope.loginForm.topLevelErrorMessage = 'Invalid email/password combination.';
+          //
+          $scope.loginForm.error = true;
+          return;
+        }
+
+        alert('error2, yo');
+        $scope.loginForm.error = true;
+      })
+      .finally(function eitherWay(){
+        $scope.loginForm.loading = false;
+      });
+  };
 
 }]);
 

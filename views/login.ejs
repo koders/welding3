@@ -1,0 +1,49 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui teal image header">
+      <!--<img src="images/gjerde_logo.gif" class="image">-->
+      <div class="content">
+        SIA Saldus Welding
+      </div>
+    </h2>
+    te {{loginForm.error}}
+    <form name="form" ng-submit="submitLoginForm()" class="ui large form" ng-class="{'error' : loginForm.error }">
+      <div class="ui stacked segment">
+        <div class="ui error message">
+          <p>Incorrect username and/or password!</p>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="email" placeholder="Username" ng-model="loginForm.userName">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password" ng-model="loginForm.password">
+          </div>
+        </div>
+        <button type="submit" class="ui fluid large teal submit button">Login</button>
+      </div>
+
+      <div class="ui error message"></div>
+
+    </form>
+  </div>
+</div>
+
+<style type="text/css">
+  body {
+    background-color: #232323;
+  }
+  body > .grid {
+    height: 100%;
+  }
+  .column {
+    max-width: 450px;
+  }
+  .ui.stacked.segment::after {
+    width: 0px;
+  }
+</style>
