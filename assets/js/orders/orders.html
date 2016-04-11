@@ -1,6 +1,8 @@
+<button class="ui blue button" ng-click="createOrder()">New order</button>
+
 <h2 class="ui header">Orders</h2>
 
-<table class="ui sortable celled table">
+<table class="ui sortable celled table very basic">
   <thead>
   <tr>
     <th>Status</th>
@@ -33,7 +35,7 @@
             Options
           </div>
           <div class="divider"></div>
-          <div class="item" ng-repeat="item in orderOptions">
+          <div class="item" ng-repeat="item in orderOptions" ng-click="editOrder(order)">
             <i class="{{item.icon}} icon"></i>
             {{item.title}}
           </div>

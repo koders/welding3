@@ -4,13 +4,13 @@ angular.module('weldingApp.orders', [])
     function ($routeProvider) {
       $routeProvider.when('/orders', {
         templateUrl: 'js/orders/orders.html',
-        controller: 'OrderCtrl'
+        controller: 'OrdersCtrl'
       })
     }
   ])
 
-  .controller('OrderCtrl', ['$scope', '$http', '$location',
-    function ($scope, $http, $location) {
+  .controller('OrdersCtrl', ['$scope', '$http', '$location', 'OrderService',
+    function ($scope, $http, $location, OrderService) {
       $http.get('api/orders?sort=id%20desc').success(function (data) {
         $scope.items = data;
         for (var i = 0; i < $scope.items.length; i++) {
@@ -57,7 +57,18 @@ angular.module('weldingApp.orders', [])
       };
 
       $scope.editOrder = function(order){
-        $location.url('/orders/' + order.ocnr);
+        $location.url('/orders/' + order.id);
+      };
+
+      $scope.createOrder = function () {
+        var orderPromise = OrderService.createOrder({data:JSON.stringify({})});
+        orderPromise.then(
+          function (payload) {
+            $scope.editOrder(payload);
+          },
+          function (errorPayload) {
+            console.error('failure creating order', errorPayload);
+          });
       };
 
       // Load semantic UI
