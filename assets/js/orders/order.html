@@ -4,3 +4,189 @@
     <i class="long arrow left icon"></i>
   </div>
 </div>
+
+<form class="ui form" ng-submit="submitOrder()">
+  <h4 class="ui dividing header">General Information</h4>
+  <div class="field">
+    <div class="three fields">
+      <div class="field">
+        <label>Order Confirmation number</label>
+        <div class="field">
+          <input type="text" name="ocnr" placeholder="Order Confirmation Number" ng-model="order.data.ocnr">
+        </div>
+      </div>
+      <div class="field">
+        <label>Purchase Order Number</label>
+        <div class="field">
+          <input type="text" name="ordernr" placeholder="Purchase Order Number" ng-model="order.data.ordernr">
+        </div>
+      </div>
+      <div class="field">
+        <label>Marking</label>
+        <div class="field">
+          <input type="text" name="ordernr" placeholder="Marking" ng-model="order.data.marking">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="three fields">
+    <div class="field">
+      <label>Company</label>
+      <div class="ui fluid search selection dropdown">
+        <input type="hidden" name="company" ng-model="order.data.company">
+        <i class="dropdown icon"></i>
+        <div class="default text">Select Company</div>
+        <div class="menu">
+          <div class="item" data-value="company.name" ng-repeat="company in companies">{{company.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Order Date</label>
+      <div class="field">
+        <input type="text" name="ordernr" placeholder="Marking" ng-model="order.data.odate">
+      </div>
+    </div>
+    <div class="field">
+      <label>Currency</label>
+      <div class="field">
+        <input type="text" name="ordernr" placeholder="Currency" ng-model="order.data.currency">
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <label>Specification</label>
+    <textarea ng-model="order.data.specification" rows="2"></textarea>
+  </div>
+
+  <h4 class="ui dividing header">Delivery Information</h4>
+  <div class="field">
+    <div class="four fields">
+      <div class="field">
+        <label>Planned Delivery Date</label>
+        <div class="field">
+          <input type="text" name="ddate" placeholder="Planned Delivery Date" ng-model="order.data.ddate">
+        </div>
+      </div>
+      <div class="field">
+        <label>Actual Delivery Date</label>
+        <div class="field">
+          <input type="text" name="addate" placeholder="Actual Delivery Date" ng-model="order.data.addate">
+        </div>
+      </div>
+      <div class="field">
+        <label>Delivery Terms</label>
+        <div class="ui fluid search selection dropdown">
+          <input type="hidden" name="dterms" ng-model="order.data.dterms">
+          <i class="dropdown icon"></i>
+          <div class="default text">Select Terms</div>
+          <div class="menu">
+            <div class="item" data-value="ro"><i class="ro flag"></i>Romania</div>
+            <div class="item" data-value="sb"><i class="sb flag"></i>Solomon Islands</div>
+            <div class="item" data-value="so"><i class="so flag"></i>Somalia</div>
+            <div class="item" data-value="zm"><i class="zm flag"></i>Zambia</div>
+            <div class="item" data-value="zw"><i class="zw flag"></i>Zimbabwe</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Delivery Address</label>
+        <div class="field">
+          <input type="text" name="daddress" placeholder="Delivery Address" ng-model="order.data.daddress">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="ui dividing header">Contact Information</h4>
+  <div class="field">
+    <div class="four fields">
+      <div class="field">
+        <label>Contact Person</label>
+        <div class="ui fluid search selection dropdown">
+          <input type="hidden" name="cperson" ng-model="order.data.cperson">
+          <i class="dropdown icon"></i>
+          <div class="default text">Select Terms</div>
+          <div class="menu">
+            <div class="item" data-value="ro"><i class="ro flag"></i>Romania</div>
+            <div class="item" data-value="sb"><i class="sb flag"></i>Solomon Islands</div>
+            <div class="item" data-value="so"><i class="so flag"></i>Somalia</div>
+            <div class="item" data-value="zm"><i class="zm flag"></i>Zambia</div>
+            <div class="item" data-value="zw"><i class="zw flag"></i>Zimbabwe</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Phone</label>
+        <div class="field">
+          <input type="text" name="cphone" placeholder="Phone" ng-model="order.data.cphone">
+        </div>
+      </div>
+      <div class="field">
+        <label>Fax</label>
+        <div class="field">
+          <input type="text" name="cfax" placeholder="Fax" ng-model="order.data.cfax">
+        </div>
+      </div>
+      <div class="field">
+        <label>E-Mail</label>
+        <div class="field">
+          <input type="text" name="cemail" placeholder="E-Mail" ng-model="order.data.cemail">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="ui dividing header">Products</h4>
+  <table class="ui very basic celled table product">
+    <thead>
+    <tr>
+      <th class="one wide"></th>
+      <th class="two wide">Product Number</th>
+      <th class="seven wide">Description</th>
+      <th class="two wide">Quantity</th>
+      <th class="two wide">Price</th>
+      <th class="two wide">Total Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="product in order.data.p">
+      <td style="text-align: center;">
+        <button class="ui icon button inverted red" ng-click="removeProduct($index)">
+          <i class="remove icon"></i>
+        </button>
+      </td>
+      <td>
+        {{product.pno}}
+      </td>
+      <td>
+        <div class="ui fluid search selection dropdown product description">
+          <input type="hidden" name="product.desc" ng-model="product.desc">
+          <i class="dropdown icon"></i>
+          <div class="default text">Product Description</div>
+          <div class="menu">
+            <div class="item" data-value="{{p.description}}" ng-repeat="p in products" ng-click="updateProduct(product, p)"><strong>{{p.productNumber}}</strong> <span>{{p.description}}</span></div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="ui input">
+          <input type="text" name="product.pcs" placeholder="Quantity" ng-model="product.pcs">
+        </div>
+      </td>
+      <td>
+        <div class="ui input">
+          <input type="text" name="product.price" placeholder="Price" ng-model="product.price">
+        </div>
+      </td>
+      <td>{{product.price * product.pcs | number: 2}}</td>
+    </tr>
+    <tr>
+      <td colspan="5"><button class="ui button green" ng-click="addProduct()" type="button">Add New Product</button></td>
+      <td><strong>{{calculateProductTotal(order.data.p) | number: 2}}</strong></td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="ui button primary" tabindex="0" type="submit" >Save Order</button>
+</form>
