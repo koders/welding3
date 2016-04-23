@@ -49,6 +49,7 @@ var jsFilesToInject = [
   'bower_components/angular-material/angular-material.js',
   'bower_components/angular-loading-bar/build/loading-bar.min.js',
   'bower_components/underscore/underscore.js',
+  'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
 
   // Semantic UI
   'bower_components/semantic/dist/**/*.js',

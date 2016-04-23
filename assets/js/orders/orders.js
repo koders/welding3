@@ -19,6 +19,37 @@ angular.module('weldingApp.orders', [])
         }
       });
 
+      $scope.loadOrders = function(){
+        var currentLength = $scope.loadedOrders.length;
+        for(var i = currentLength; i < currentLength + 30; i++) {
+          if($scope.orders.length < i) {
+            break;
+          }
+          $scope.loadedOrders.push($scope.orders[i]);
+        }
+        $scope.initSemanticUI();
+      };
+
+      $scope.orders = [];
+      $scope.loadedOrders = [];
+      $scope.getOrders = function () {
+        var promise = OrderService.getOrders();
+        promise.then(
+          function (payload) {
+            $scope.orders = payload;
+            $scope.orders.forEach(function (order) {
+              order.data = angular.fromJson(order.data);
+            });
+            console.log('test');
+            $scope.loadOrders();
+          },
+          function (errorPayload) {
+            $log.error('failure loading orders', errorPayload);
+          });
+      };
+
+      $scope.getOrders();
+
       $scope.selected = [];
 
       $scope.getStatusClass = function (status) {
@@ -71,10 +102,13 @@ angular.module('weldingApp.orders', [])
           });
       };
 
-      // Load semantic UI
-      setTimeout(function() {
-        $('[data-content]').popup();
-        $('.ui.dropdown').dropdown();
-      });
+      $scope.initSemanticUI = function(){
+        // Load semantic UI
+        setTimeout(function() {
+          $('[data-content]').popup();
+          $('.ui.dropdown').dropdown();
+        });
+      };
+
     }
   ]);

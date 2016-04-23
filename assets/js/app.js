@@ -3,10 +3,11 @@
 var weldingApp = angular.module('weldingApp', [
   'ngRoute',
   'ngAnimate',
-  //'angular-loading-bar',
+  'angular-loading-bar',
   'weldingApp.dashboard',
   'weldingApp.orders',
   'weldingApp.order',
+  'infinite-scroll'
 ]);
 
 weldingApp.controller('MainCtrl', ['$scope', 'OrderService', '$location', '$http', function ($scope, OrderService, $location, $http) {
@@ -76,23 +77,6 @@ weldingApp.controller('MainCtrl', ['$scope', 'OrderService', '$location', '$http
     $scope.selectedMenuItem = title;
     $location.url(title.toLowerCase());
   };
-
-  $scope.orders = [];
-  $scope.getOrders = function () {
-    var promise = OrderService.getOrders();
-    promise.then(
-      function (payload) {
-        $scope.orders = payload;
-        $scope.orders.forEach(function (order) {
-          order.data = angular.fromJson(order.data);
-        });
-      },
-      function (errorPayload) {
-        $log.error('failure loading orders', errorPayload);
-      });
-  };
-
-  $scope.getOrders();
 
   // set-up loginForm loading state
   $scope.loginForm = {
