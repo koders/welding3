@@ -9,9 +9,17 @@ angular.module('weldingApp.order', ['ngAnimate'])
     }
   ])
 
-  .controller('OrderCtrl', ['$scope', '$http', '$location', '$routeParams', 'OrderService', 'ProductService',
-    'CompanyService', '$timeout', '$log',
-    function ($scope, $http, $location, $routeParams, OrderService, ProductService, CompanyService, $timeout, $log) {
+  .controller('OrderCtrl', ['$scope', '$http', '$location', '$routeParams', 'OrderService', 'ProductService', 'TermService', 'PersonService',
+    'CompanyService', '$timeout',
+    function ($scope, $http, $location, $routeParams, OrderService, ProductService, TermService, PersonService, CompanyService, $timeout) {
+
+      $scope.initSemanticUI = function(){
+        // Load semantic UI
+        setTimeout(function() {
+          $('.ui.dropdown').dropdown();
+        });
+      };
+
       $scope.backToOrders = function(){
         $location.path('orders')
       };
@@ -26,17 +34,21 @@ angular.module('weldingApp.order', ['ngAnimate'])
           $scope.order = payload;
           $scope.order.data = JSON.parse($scope.order.data);
           $scope.order.data.ocnr = parseInt($scope.order.data.ocnr);
+          $scope.initSemanticUI();
         },
         function (errorPayload) {
-          $log.error('failure reading order', errorPayload);
-        });
+          console.error('failure reading order', errorPayload);
+          $scope.initSemanticUI();
+        }
+      );
 
       $scope.addProduct = function(){
         if(!$scope.order.data.p) {
           $scope.order.data.p = [];
         }
         $scope.order.data.p.push({});
-        $timeout(function(){$('.dropdown').dropdown()}, 0, false);
+        // $timeout(function(){$('.dropdown').dropdown()}, 0, false);
+        $scope.initSemanticUI();
       };
 
       $scope.removeProduct = function(index){
@@ -48,10 +60,9 @@ angular.module('weldingApp.order', ['ngAnimate'])
       productPromise.then(
         function (payload) {
           $scope.products = payload;
-          $log.log(payload);
         },
         function (errorPayload) {
-          $log.error('failure reading products', errorPayload);
+          console.error('failure reading products', errorPayload);
         }
       );
 
@@ -60,10 +71,31 @@ angular.module('weldingApp.order', ['ngAnimate'])
       companyPromise.then(
         function (payload) {
           $scope.companies = payload;
-          $log.log(payload);
         },
         function (errorPayload) {
-          $log.error('failure reading products', errorPayload);
+          console.error('failure reading companies', errorPayload);
+        }
+      );
+
+      // Get Terms
+      var termPromise = TermService.getTerms();
+      termPromise.then(
+        function (payload) {
+          $scope.terms = payload;
+        },
+        function (errorPayload) {
+          console.error('failure reading terms', errorPayload);
+        }
+      );
+
+      // Get Persons
+      var personPromise = PersonService.getPersons();
+      personPromise.then(
+        function (payload) {
+          $scope.persons = payload;
+        },
+        function (errorPayload) {
+          console.error('failure reading persons', errorPayload);
         }
       );
 
@@ -96,10 +128,16 @@ angular.module('weldingApp.order', ['ngAnimate'])
         return total;
       };
 
-      $scope.submitOrder = function(){
-        $log.log($scope.order);
+      $scope.selectCompany = function(company) {
+        $scope.order.data.company = company.name;
       };
 
-      $('.product.table .dropdown.product.description').dropdown();
+      $scope.selectDeliveryAddress = function(company) {
+        $scope.order.data.daddres = company.address;
+      };
+
+      $scope.submitOrder = function(){
+        console.log($scope.order);
+      };
     }
   ]);

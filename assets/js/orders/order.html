@@ -38,7 +38,7 @@
         <i class="dropdown icon"></i>
         <div class="default text">Select Company</div>
         <div class="menu">
-          <div class="item" data-value="company.name" ng-repeat="company in companies">{{company.name}}</div>
+          <div class="item" data-value="company.name" ng-repeat="company in companies" ng-click="selectCompany(company)">{{company.name}}</div>
         </div>
       </div>
     </div>
@@ -82,20 +82,29 @@
           <i class="dropdown icon"></i>
           <div class="default text">Select Terms</div>
           <div class="menu">
-            <div class="item" data-value="ro"><i class="ro flag"></i>Romania</div>
-            <div class="item" data-value="sb"><i class="sb flag"></i>Solomon Islands</div>
-            <div class="item" data-value="so"><i class="so flag"></i>Somalia</div>
-            <div class="item" data-value="zm"><i class="zm flag"></i>Zambia</div>
-            <div class="item" data-value="zw"><i class="zw flag"></i>Zimbabwe</div>
+            <div class="item" data-value="term.terms" ng-repeat="term in terms">{{term.terms}}</div>
           </div>
         </div>
       </div>
       <div class="field">
         <label>Delivery Address</label>
-        <div class="field">
-          <input type="text" name="daddress" placeholder="Delivery Address" ng-model="order.data.daddress">
+        <div class="ui fluid search selection dropdown">
+          <input type="hidden" name="daddres" ng-model="order.data.daddres">
+          <i class="dropdown icon"></i>
+          <div class="default text">Select Company</div>
+          <div class="menu">
+            <div class="item" data-value="company.address" ng-repeat="company in companies"
+                 title="{{company.address || '-'}}" ng-click="selectDeliveryAddress(company)">
+              <span>{{company.name}}</span>
+              <div class="address ui card">
+                <div class="content">
+                  <div class="header">{{company.name}}</div>
+                  <div class="description">{{company.address}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
     </div>
   </div>
 
@@ -107,13 +116,9 @@
         <div class="ui fluid search selection dropdown">
           <input type="hidden" name="cperson" ng-model="order.data.cperson">
           <i class="dropdown icon"></i>
-          <div class="default text">Select Terms</div>
+          <div class="default text">Select Person</div>
           <div class="menu">
-            <div class="item" data-value="ro"><i class="ro flag"></i>Romania</div>
-            <div class="item" data-value="sb"><i class="sb flag"></i>Solomon Islands</div>
-            <div class="item" data-value="so"><i class="so flag"></i>Somalia</div>
-            <div class="item" data-value="zm"><i class="zm flag"></i>Zambia</div>
-            <div class="item" data-value="zw"><i class="zw flag"></i>Zimbabwe</div>
+            <div class="item" data-value="person.name" ng-repeat="person in persons">{{person.name}}</div>
           </div>
         </div>
       </div>
