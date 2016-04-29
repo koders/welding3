@@ -9,8 +9,8 @@ angular.module('weldingApp.orders', [])
     }
   ])
 
-  .controller('OrdersCtrl', ['$scope', '$http', '$location', 'OrderService',
-    function ($scope, $http, $location, OrderService) {
+  .controller('OrdersCtrl', ['$scope', '$http', '$location', 'OrderService', 'WeldingLoader',
+    function ($scope, $http, $location, OrderService, WeldingLoader) {
       $http.get('api/orders?sort=id%20desc').success(function (data) {
         $scope.items = data;
         for (var i = 0; i < $scope.items.length; i++) {
@@ -20,6 +20,7 @@ angular.module('weldingApp.orders', [])
       });
 
       $scope.loadOrders = function(){
+        WeldingLoader.start();
         var currentLength = $scope.loadedOrders.length;
         for(var i = currentLength; i < currentLength + 30; i++) {
           if($scope.orders.length < i) {
@@ -28,6 +29,7 @@ angular.module('weldingApp.orders', [])
           $scope.loadedOrders.push($scope.orders[i]);
         }
         $scope.initSemanticUI();
+        WeldingLoader.stop();
       };
 
       $scope.orders = [];
